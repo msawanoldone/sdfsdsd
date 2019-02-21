@@ -10,8 +10,8 @@ const queue = new Map();
 const ytdl = require('ytdl-core');
 const fs = require('fs');
 const gif = require("gif-search");
-const prefix = "1"
-const adminprefix = "1"
+const prefix = "-"
+
 /////////////////////////
 ////////////////////////
 //////////////////////
@@ -334,148 +334,6 @@ message.member.voiceChannel.join();
 }
 });
 
-
-client.on('message', message => {
-     if (message.author.bot) return;
-if (message.content.startsWith(prefix + "uptime")) {
-    let uptime = client.uptime;
-
-    let days = 0;
-    let hours = 0;
-    let minutes = 0;
-    let seconds = 0;
-    let notCompleted = true;
-
-    while (notCompleted) {
-
-        if (uptime >= 8.64e+7) {
-
-            days++;
-            uptime -= 8.64e+7;
-
-        } else if (uptime >= 3.6e+6) {
-
-            hours++;
-            uptime -= 3.6e+6;
-
-        } else if (uptime >= 60000) {
-
-            minutes++;
-            uptime -= 60000;
-
-        } else if (uptime >= 1000) {
-            seconds++;
-            uptime -= 1000;
-
-        }
-
-        if (uptime < 1000)  notCompleted = false;
-
-    }
-
-    message.channel.send("`" + `${days} days, ${hours} hrs, ${minutes} , ${seconds} sec` + "`");
-
-
-}
-});
-
-client.on('message', message => {
-                                if(!message.channel.guild) return;
-                        if (message.content.startsWith(prefix + "ping")) {
-                            if(!message.channel.guild) return;
-                            var msg = `${Date.now() - message.createdTimestamp}`
-                            var api = `${Math.round(client.ping)}`
-                            if (message.author.bot) return;
-                        let embed = new Discord.RichEmbed()
-                        .setAuthor(message.author.username,message.author.avatarURL)
-                        .setThumbnail('https://cdn.discordapp.com/avatars/368141321547808768/c42716e13cb850f9ad0930af699472d0.png?size=2048nk')
-                        .setColor('RANDOM')
-                        .addField('**Time Taken:**',msg + " ms")
-                        .addField('**WebSocket:**',api + " ms")
-message.channel.send({embed:embed});
-                        }
-                    });
-
-
-
-
-
-
-
-
- client.on('message', function(message) {
-	const myID = "490076609215201282";
-    let args = message.content.split(" ").slice(1).join(" ");
-    if(message.content.startsWith(adminprefix + "setname")) {
-		        if(message.author.id !== myID) return;
-            if(!args) return message.reply('اكتب الحالة اللي تريدها.');
-        client.user.setUsername(args);
-        message.channel.send(':white_check_mark: Done!').then(msg => {
-           msg.delete(5000);
-          message.delete(5000);
-        });
-    } else if(message.content.startsWith(adminprefix + "stream")) {
-		        if(message.author.id !== myID) return;
-            if(!args) return message.reply('اكتب الحالة اللي تريدها.');
-        client.user.setGame(args , 'https://twitch.tv/6xlez1');
-        message.channel.send(':white_check_mark: Done!').then(msg => {
-           msg.delete(5000);
-          message.delete(5000);
-        });
-    } else if(message.content.startsWith(adminprefix + "play")) {
-				        if(message.author.id !== myID) return;
-            if(!args) return message.reply('اكتب الحالة اللي تريدها.');
-        client.user.setGame(args);
-        message.channel.send(':white_check_mark: Done!').then(msg => {
-           msg.delete(5000);
-          message.delete(5000);
-        });
-    } else if(message.content.startsWith(adminprefix + "listen")) {
-				        if(message.author.id !== myID) return;
-            if(!args) return message.reply('اكتب الحالة اللي تريدها.');
-        client.user.setActivity(args, {type:'LISTENING'});
-        message.channel.send(':white_check_mark: Done!').then(msg => {
-           msg.delete(5000);
-          message.delete(5000);
-        });
-    } else if(message.content.startsWith(adminprefix + "watch")) {
-				        if(message.author.id !== myID) return;
-            if(!args) return message.reply('اكتب الحالة اللي تريدها.');
-        client.user.setActivity(args, {type:'WATCHING'});
-        message.channel.send(':white_check_mark: Done!').then(msg => {
-           msg.delete(5000);
-          message.delete(5000);
-        });
-    } else if(message.content.startsWith(adminprefix + "setavatar")) {
-				        if(message.author.id !== myID) return;
-        client.user.setAvatar(args);
-        message.channel.send(':white_check_mark: Done!').then(msg => {
-                if(!args) return message.reply('اكتب الحالة اللي تريدها.');
-           msg.delete(5000);
-          message.delete(5000);
-        });
-    }
-});
-
-  client.on('message',async message => {
-    if(message.content.startsWith(adminprefix + "restart")) {
-        if(message.author.id !== "490076609215201282") return message.reply('You aren\'t the bot owner.');
-        message.channel.send('**Restarting.**').then(msg => {
-            setTimeout(() => {
-               msg.edit('**Restarting..**');
-            },1000);
-            setTimeout(() => {
-               msg.edit('**Restarting...**');
-            },2000);
-        });
-        console.log(`${message.author.tag} [ ${message.author.id} ] has restarted the bot.`);
-        console.log(`Restart Done..`);
-        setTimeout(() => {
-            client.destroy();
-client.login(process.env.BOT_TOKEN);
-        },3000);
-    }
-});
 
 
 
