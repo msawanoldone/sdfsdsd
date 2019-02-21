@@ -257,7 +257,7 @@ function play(guild, song) {
 //////////////////////
 
 client.on('message', message => {
-if (message.content.startsWith(prefix + 'help')) { /// This is The DMS Code Send The Help In DMS // Code By NotGucci
+if (message.content.startsWith(prefix + 'music')) { /// This is The DMS Code Send The Help In DMS // Code By NotGucci
     let pages = [`
 	
         ***__أوامر الموسيفة__***
